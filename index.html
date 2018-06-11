@@ -13,7 +13,7 @@
                 };
                 document.getElementById("resultText").innerHTML = 'Initializing all of the services';
                 // xhr.open('GET', "http://localhost:3003/initall", true);
-                xhr.open('GET', "http://minhducdropboxbackup.eu-gb.mybluemix.net/initall", true);
+                xhr.open('GET', "https://minhducdropboxbackup.eu-gb.mybluemix.net/initall", true);
                 xhr.setRequestHeader('dropboxAccessKey', document.getElementById('dropboxAccessKey').value);
                 xhr.setRequestHeader('sendspaceUserName', document.getElementById('sendspaceUserName').value);
                 xhr.setRequestHeader('sendspaceMd5Password', document.getElementById('sendspaceMd5Password').value);
@@ -29,7 +29,7 @@
                 };
                 document.getElementById("resultText").innerHTML = 'Backing up the files. Please wait, this is going to take a while.';
                 // xhr.open('GET', "http://localhost:3003/backup", true);
-                xhr.open('GET', "http://minhducdropboxbackup.eu-gb.mybluemix.net/backup", true);
+                xhr.open('GET', "https://minhducdropboxbackup.eu-gb.mybluemix.net/backup", true);
                 xhr.send();
             }
         </script>
