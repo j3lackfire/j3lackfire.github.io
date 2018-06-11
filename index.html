@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script>
+            function initAll() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    console.log('Response received ' + this.responseText)
+                    document.getElementById("resultText").innerHTML = this.responseText;
+                    if (this.responseText == '{"Message":"Init sendspace successfully"}') {
+                        document.getElementById('initButton').style.display = 'none';
+                        document.getElementById('backupButton').style.display = '';
+                    }
+                };
+                document.getElementById("resultText").innerHTML = 'Initializing all of the services';
+                // xhr.open('GET', "http://localhost:3003/initall", true);
+                xhr.open('GET', "http://minhducdropboxbackup.eu-gb.mybluemix.net/initall", true);
+                xhr.setRequestHeader('dropboxAccessKey', document.getElementById('dropboxAccessKey').value);
+                xhr.setRequestHeader('sendspaceUserName', document.getElementById('sendspaceUserName').value);
+                xhr.setRequestHeader('sendspaceMd5Password', document.getElementById('sendspaceMd5Password').value);
+                xhr.setRequestHeader('sendSpaceApiKey', document.getElementById('sendSpaceApiKey').value);
+                xhr.send();
+            }
+
+            function sendBackupRequest() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    console.log('Response received ' + this.responseText)
+                    document.getElementById("resultText").innerHTML = this.responseText;
+                };
+                document.getElementById("resultText").innerHTML = 'Backing up the files. Please wait, this is going to take a while.';
+                // xhr.open('GET', "http://localhost:3003/backup", true);
+                xhr.open('GET', "http://minhducdropboxbackup.eu-gb.mybluemix.net/backup", true);
+                xhr.send();
+            }
+        </script>
+    </head>
+    <div>
+        <form>
+            Dropbox Access Key:<br>
+            <input type="text" id="dropboxAccessKey" value="KU1I6ilkxrAAAAAAAAAADmph3aEctjmw5LrRrAxHBeBsLabN0w2rN2j8hVlt84NA"><br>
+            Sendspace User Name:<br>
+            <input type="text" id="sendspaceUserName" value="minhduc.gameregistry@gmail.com"><br>
+            Sendspace Md5 Password:<br>
+            <input type="text" id="sendspaceMd5Password" value="6be3c296bfa4c35c1b5fcdbd1bc989a8"><br>
+            Sendspace Api Key:<br>
+            <input type="text" id="sendSpaceApiKey" value="M3AL0C04KU"><br>
+
+            <p id="resultText">Please click the Init all button</p><br>
+            
+            <!-- <button type="button" onclick="sendData({test:'ok'})">Click Me!</button> -->
+            <button type="button" id ="initButton" onclick="initAll()">Init all services</button>
+            <br>
+            <br>
+            <button type="button" id ="backupButton" onclick="sendBackupRequest()" style="display: none;">Backup all</button>
+        </form>
+    </div>
+</html>
